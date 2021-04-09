@@ -1,11 +1,12 @@
 {
   "name": "@minutemailer/api",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/Minutemailer.js",
   "repository": "https://github.com/minutemailer/api-gateway-javascript-client.git",
   "author": "Tobias Bleckert <hola@tobiasbleckert.se>",
   "license": "MIT",
   "scripts": {
+    "build": "tsc",
     "test": "ts-node test/api.ts"
   },
   "devDependencies": {
