@@ -37,8 +37,6 @@ export default class HttpClient {
                 },
             },
         ).then((r) => {
-            console.error(r);
-
             return r.json();
         });
     }

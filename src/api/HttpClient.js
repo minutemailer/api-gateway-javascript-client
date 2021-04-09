@@ -27,7 +27,6 @@ class HttpClient {
                 ...headers,
             },
         }).then((r) => {
-            console.error(r);
             return r.json();
         });
     }
