@@ -30,5 +30,17 @@ class HttpClient {
             return r.json();
         });
     }
+    post(path, data, headers = {}) {
+        return fetch(`${this.endpoint}${path}`, {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                ...this.headers,
+                ...headers,
+            },
+        }).then((r) => {
+            return r.json();
+        });
+    }
 }
 exports.default = HttpClient;

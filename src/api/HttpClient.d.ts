@@ -7,5 +7,6 @@ export default class HttpClient {
     headers: Headers;
     constructor(apiKey: string, endpoint: string);
     get(path: string, params?: Object, headers?: Headers): Promise<Response>;
+    post(path: string, data: Object, headers?: Headers): Promise<Response>;
 }
 export {};

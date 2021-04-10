@@ -8,5 +8,8 @@ class Contact extends HttpClient_1.default {
     index() {
         return this.get('/contacts');
     }
+    create(data) {
+        return this.post('/contacts', data);
+    }
 }
 exports.default = Contact;

@@ -40,4 +40,20 @@ export default class HttpClient {
             return r.json();
         });
     }
+
+    post(path: string, data: Object, headers: Headers = {}): Promise<Response> {
+        return fetch(
+            `${this.endpoint}${path}`,
+            {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                    ...this.headers,
+                    ...headers,
+                },
+            },
+        ).then((r) => {
+            return r.json();
+        });
+    }
 }
