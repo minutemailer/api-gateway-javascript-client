@@ -1,4 +1,5 @@
-import Contact from "./api/Contact";
+import Contact from './api/Contact';
+import ContactList from './api/ContactList';
 
 export default class Minutemailer {
     apiKey: string;
@@ -11,5 +12,9 @@ export default class Minutemailer {
 
     contact(): Contact {
         return new Contact(this.apiKey, this.endpoint);
+    }
+
+    contactList(): ContactList {
+        return new ContactList(this.apiKey, this.endpoint);
     }
 }

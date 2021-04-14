@@ -1,5 +1,4 @@
 import HttpClient from './HttpClient';
-import ContactInterface from '../interfaces/ContactInterface';
 
 interface Data {
     email: string,

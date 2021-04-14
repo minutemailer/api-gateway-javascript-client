@@ -1,4 +1,6 @@
-export default class ContactList {
+import ContactListInterface from '../interfaces/ContactListInterface';
+
+export default class ContactList implements ContactListInterface {
     id: string;
     name: string;
     description?: string;

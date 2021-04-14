@@ -11,3 +11,7 @@ const minutemailer = new Minutemailer(process.env.MINUTEMAILER_API_KEY || 'nokey
 minutemailer.contact().index()
     .then((res) => console.log(res))
     .catch((ex) => console.error(ex));
+
+minutemailer.contactList().index()
+    .then((res) => console.log(res))
+    .catch((ex) => console.error(ex));
