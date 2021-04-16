@@ -1,4 +1,5 @@
 import objToQuery from '../lib/objToQuery';
+import RequestError from './RequestError';
 
 interface Headers {
     [key: string]: string,
@@ -21,39 +22,43 @@ export default class HttpClient {
         };
     }
 
+    request(path: string, method: string = 'GET', body = '', headers: Headers = {}): Promise<Response> {
+        const url = `${this.endpoint}${path}`;
+        const opts: RequestInit = {
+            method,
+            headers: {
+                ...this.headers,
+                ...headers,
+            },
+        };
+
+        if (method !== 'GET') {
+            opts.body = body;
+        }
+
+        return fetch(
+            url,
+            opts,
+        ).then((r) => r.json().then((json) => {
+            if (r.status > 299) {
+                throw new RequestError(r.statusText, json, r.status);
+            }
+
+            return json;
+        }));
+    }
+
     get(path: string, params?: Object, headers: Headers = {}): Promise<Response> {
-        let url = `${this.endpoint}${path}`;
+        let url = path;
 
         if (params) {
             url += `?${objToQuery(params)}`;
         }
 
-        return fetch(
-            url,
-            {
-                headers: {
-                    ...this.headers,
-                    ...headers,
-                },
-            },
-        ).then((r) => {
-            return r.json();
-        });
+        return this.request(url, 'GET', '', headers);
     }
 
     post(path: string, data: Object, headers: Headers = {}): Promise<Response> {
-        return fetch(
-            `${this.endpoint}${path}`,
-            {
-                method: 'POST',
-                body: JSON.stringify(data),
-                headers: {
-                    ...this.headers,
-                    ...headers,
-                },
-            },
-        ).then((r) => {
-            return r.json();
-        });
+        return this.request(path, 'POST', JSON.stringify(data), headers);
     }
 }

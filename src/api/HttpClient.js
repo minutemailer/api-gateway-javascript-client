@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const objToQuery_1 = __importDefault(require("../lib/objToQuery"));
+const RequestError_1 = __importDefault(require("./RequestError"));
 ;
 class HttpClient {
     constructor(apiKey, endpoint) {
@@ -16,31 +17,34 @@ class HttpClient {
             'X-Auth-Token': this.apiKey,
         };
     }
+    request(path, method = 'GET', body = '', headers = {}) {
+        const url = `${this.endpoint}${path}`;
+        const opts = {
+            method,
+            headers: {
+                ...this.headers,
+                ...headers,
+            },
+        };
+        if (method !== 'GET') {
+            opts.body = body;
+        }
+        return fetch(url, opts).then((r) => r.json().then((json) => {
+            if (r.status > 299) {
+                throw new RequestError_1.default(r.statusText, json, r.status);
+            }
+            return json;
+        }));
+    }
     get(path, params, headers = {}) {
-        let url = `${this.endpoint}${path}`;
+        let url = path;
         if (params) {
             url += `?${objToQuery_1.default(params)}`;
         }
-        return fetch(url, {
-            headers: {
-                ...this.headers,
-                ...headers,
-            },
-        }).then((r) => {
-            return r.json();
-        });
+        return this.request(url, 'GET', '', headers);
     }
     post(path, data, headers = {}) {
-        return fetch(`${this.endpoint}${path}`, {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                ...this.headers,
-                ...headers,
-            },
-        }).then((r) => {
-            return r.json();
-        });
+        return this.request(path, 'POST', JSON.stringify(data), headers);
     }
 }
 exports.default = HttpClient;
