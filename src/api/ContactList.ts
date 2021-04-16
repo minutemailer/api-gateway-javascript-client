@@ -1,5 +1,5 @@
 import HttpClient from './HttpClient';
-import ContactInterface from '../interfaces/ContactInterface';
+import ContactListInterface from '../interfaces/ContactListInterface';
 
 interface Data {
     name: string,
@@ -7,8 +7,12 @@ interface Data {
 }
 
 export default class ContactList extends HttpClient {
-    index(): Promise<Response> {
-        return this.get('/contact-lists');
+    index(): Promise<ContactListInterface[]> {
+        return this.get('/contact-lists').then((json: any) => json as ContactListInterface[]);
+    }
+
+    show(id: string): Promise<ContactListInterface> {
+        return this.get(`/contact-lists/${id}`).then((json: any) => json as ContactListInterface);
     }
 
     create(data: Data): Promise<Response> {
