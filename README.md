@@ -1,1 +1,3 @@
-# api-gateway-javascript-client
+# Javascript client for Minutemailer API
+
+`yarn add @minutemailer/api`
