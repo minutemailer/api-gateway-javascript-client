@@ -3,7 +3,7 @@ import ContactListInterface from '../interfaces/ContactListInterface';
 
 interface Data {
     name: string,
-    [key: string]: string|number,
+    [key: string]: string|number|boolean,
 }
 
 export default class ContactList extends HttpClient {

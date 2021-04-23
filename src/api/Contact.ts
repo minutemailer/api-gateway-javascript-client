@@ -3,7 +3,7 @@ import ContactInterface from '../interfaces/ContactInterface';
 
 interface Data {
     email: string,
-    [key: string]: string|number,
+    [key: string]: string|number|boolean,
 }
 
 export default class Contact extends HttpClient {
