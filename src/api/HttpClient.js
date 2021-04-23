@@ -26,25 +26,33 @@ class HttpClient {
                 ...headers,
             },
         };
-        if (method !== 'GET') {
+        if (method !== 'GET' && body.length) {
             opts.body = body;
         }
-        return fetch(url, opts).then((r) => r.json().then((json) => {
-            if (r.status > 299) {
-                throw new RequestError_1.default(r.statusText, json, r.status);
+        return fetch(url, opts).then((r) => {
+            if (r.status === 204) {
+                return '';
             }
-            return json;
-        }));
+            return r.json().then((json) => {
+                if (r.status > 299) {
+                    throw new RequestError_1.default(r.statusText, json, r.status);
+                }
+                return json;
+            });
+        });
     }
-    get(path, params, headers = {}) {
+    httpGet(path, params, headers = {}) {
         let url = path;
         if (params) {
             url += `?${objToQuery_1.default(params)}`;
         }
         return this.request(url, 'GET', '', headers);
     }
-    post(path, data, headers = {}) {
+    httpPost(path, data, headers = {}) {
         return this.request(path, 'POST', JSON.stringify(data), headers);
+    }
+    httpDelete(path, headers = {}) {
+        return this.request(path, 'DELETE', '', headers);
     }
 }
 exports.default = HttpClient;

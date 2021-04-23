@@ -6,13 +6,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const HttpClient_1 = __importDefault(require("./HttpClient"));
 class Contact extends HttpClient_1.default {
     index() {
-        return this.get('/contacts').then((json) => json);
+        return this.httpGet('/contacts').then((json) => json);
     }
     show(id) {
-        return this.get(`/contacts/${id}`).then((json) => json);
+        return this.httpGet(`/contacts/${id}`).then((json) => json);
     }
     create(data) {
-        return this.post('/contacts', data);
+        return this.httpPost('/contacts', data);
+    }
+    delete(id) {
+        return this.httpDelete(`/contacts/${id}`);
     }
 }
 exports.default = Contact;

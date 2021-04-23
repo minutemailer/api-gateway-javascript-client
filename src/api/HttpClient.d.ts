@@ -7,7 +7,8 @@ export default class HttpClient {
     headers: Headers;
     constructor(apiKey: string, endpoint: string);
     request(path: string, method?: string, body?: string, headers?: Headers): Promise<Response>;
-    get(path: string, params?: Object, headers?: Headers): Promise<Response>;
-    post(path: string, data: Object, headers?: Headers): Promise<Response>;
+    httpGet(path: string, params?: Object, headers?: Headers): Promise<Response>;
+    httpPost(path: string, data: Object, headers?: Headers): Promise<Response>;
+    httpDelete(path: string, headers?: Headers): Promise<Response>;
 }
 export {};

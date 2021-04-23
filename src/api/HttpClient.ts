@@ -32,23 +32,29 @@ export default class HttpClient {
             },
         };
 
-        if (method !== 'GET') {
+        if (method !== 'GET' && body.length) {
             opts.body = body;
         }
 
         return fetch(
             url,
             opts,
-        ).then((r) => r.json().then((json) => {
-            if (r.status > 299) {
-                throw new RequestError(r.statusText, json, r.status);
+        ).then((r) => {
+            if (r.status === 204) {
+                return '';
             }
 
-            return json;
-        }));
+            return r.json().then((json) => {
+                if (r.status > 299) {
+                    throw new RequestError(r.statusText, json, r.status);
+                }
+
+                return json;
+            });
+        });
     }
 
-    get(path: string, params?: Object, headers: Headers = {}): Promise<Response> {
+    httpGet(path: string, params?: Object, headers: Headers = {}): Promise<Response> {
         let url = path;
 
         if (params) {
@@ -58,7 +64,11 @@ export default class HttpClient {
         return this.request(url, 'GET', '', headers);
     }
 
-    post(path: string, data: Object, headers: Headers = {}): Promise<Response> {
+    httpPost(path: string, data: Object, headers: Headers = {}): Promise<Response> {
         return this.request(path, 'POST', JSON.stringify(data), headers);
+    }
+
+    httpDelete(path: string, headers: Headers = {}): Promise<Response> {
+        return this.request(path, 'DELETE', '', headers);
     }
 }
