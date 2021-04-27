@@ -1,14 +1,19 @@
 import HttpClient from './HttpClient';
 import ContactInterface from '../interfaces/ContactInterface';
+import CollectionInterface from "../interfaces/CollectionInterface";
 
 interface Data {
     email: string,
     [key: string]: string|number|boolean,
 }
 
+interface Collection extends CollectionInterface {
+    items: ContactInterface[];
+}
+
 export default class Contact extends HttpClient {
-    index(): Promise<ContactInterface[]> {
-        return this.httpGet('/contacts').then((json: any) => json as ContactInterface[]);
+    index(): Promise<Collection> {
+        return this.httpGet('/contacts').then((json: any) => json as Collection);
     }
 
     show(id: string): Promise<ContactInterface> {

@@ -1,14 +1,19 @@
 import HttpClient from './HttpClient';
 import ContactListInterface from '../interfaces/ContactListInterface';
+import CollectionInterface from "../interfaces/CollectionInterface";
 
 interface Data {
     name: string,
     [key: string]: string|number|boolean,
 }
 
+interface Collection extends CollectionInterface {
+    items: ContactListInterface[];
+}
+
 export default class ContactList extends HttpClient {
-    index(): Promise<ContactListInterface[]> {
-        return this.httpGet('/contact-lists').then((json: any) => json as ContactListInterface[]);
+    index(): Promise<Collection> {
+        return this.httpGet('/contact-lists').then((json: any) => json as Collection);
     }
 
     show(id: string): Promise<ContactListInterface> {
@@ -17,5 +22,9 @@ export default class ContactList extends HttpClient {
 
     create(data: Data): Promise<Response> {
         return this.httpPost('/contact-lists', data);
+    }
+
+    delete(id: string): Promise<Response> {
+        return this.httpDelete(`/contact-lists/${id}`);
     }
 }

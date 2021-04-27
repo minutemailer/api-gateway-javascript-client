@@ -1,16 +1,18 @@
 import HttpClient from './HttpClient';
-import ContactListInterface from '../interfaces/ContactListInterface';
+import FieldInterface from "../interfaces/FieldInterface";
 import CollectionInterface from "../interfaces/CollectionInterface";
 interface Data {
+    external_id: string;
     name: string;
-    [key: string]: string | number | boolean;
+    type: string;
+    is_visible?: boolean;
 }
 interface Collection extends CollectionInterface {
-    items: ContactListInterface[];
+    items: FieldInterface[];
 }
-export default class ContactList extends HttpClient {
+export default class Field extends HttpClient {
     index(): Promise<Collection>;
-    show(id: string): Promise<ContactListInterface>;
+    show(id: string): Promise<FieldInterface>;
     create(data: Data): Promise<Response>;
     delete(id: string): Promise<Response>;
 }

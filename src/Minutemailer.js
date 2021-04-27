@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const Contact_1 = __importDefault(require("./api/Contact"));
 const ContactList_1 = __importDefault(require("./api/ContactList"));
+const Field_1 = __importDefault(require("./api/Field"));
 class Minutemailer {
     constructor(apiKey, endpoint = 'https://api-gateway.minutemailer.com') {
         this.apiKey = apiKey;
@@ -15,6 +16,9 @@ class Minutemailer {
     }
     contactList() {
         return new ContactList_1.default(this.apiKey, this.endpoint);
+    }
+    field() {
+        return new Field_1.default(this.apiKey, this.endpoint);
     }
 }
 exports.default = Minutemailer;

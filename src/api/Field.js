@@ -4,18 +4,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const HttpClient_1 = __importDefault(require("./HttpClient"));
-class ContactList extends HttpClient_1.default {
+class Field extends HttpClient_1.default {
     index() {
-        return this.httpGet('/contact-lists').then((json) => json);
+        return this.httpGet('/fields').then((json) => json);
     }
     show(id) {
-        return this.httpGet(`/contact-lists/${id}`).then((json) => json);
+        return this.httpGet(`/fields/${id}`).then((json) => json);
     }
     create(data) {
-        return this.httpPost('/contact-lists', data);
+        return this.httpPost('/fields', data);
     }
     delete(id) {
-        return this.httpDelete(`/contact-lists/${id}`);
+        return this.httpDelete(`/fields/${id}`);
     }
 }
-exports.default = ContactList;
+exports.default = Field;

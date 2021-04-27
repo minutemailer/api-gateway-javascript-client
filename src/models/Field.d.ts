@@ -1,8 +1,10 @@
 import FieldType from '../enums/FieldType';
-export default class Field {
+import FieldInterface from "../interfaces/FieldInterface";
+export default class Field implements FieldInterface {
     id: string;
-    externalId: string;
+    external_id: string;
     name: string;
     type: FieldType;
-    constructor(id: string, externalId: string, name: string, type: FieldType);
+    is_visible?: boolean;
+    constructor(id: string, externalId: string, name: string, type: FieldType, is_visible?: boolean);
 }
