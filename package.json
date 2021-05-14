@@ -1,6 +1,6 @@
 {
   "name": "@minutemailer/api",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "main": "src/Minutemailer.js",
   "repository": "https://github.com/minutemailer/api-gateway-javascript-client.git",
   "author": "Tobias Bleckert <hola@tobiasbleckert.se>",
