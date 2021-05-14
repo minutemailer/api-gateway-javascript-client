@@ -68,8 +68,8 @@ export default class HttpClient {
         return this.request(path, 'POST', JSON.stringify(data), headers);
     }
 
-    httpPut(path: string, data: Object, headers: Headers = {}): Promise<Response> {
-        return this.request(path, 'PUT', JSON.stringify(data), headers);
+    httpPut(path: string, data: Object|null = null, headers: Headers = {}): Promise<Response> {
+        return this.request(path, 'PUT', (data) ? JSON.stringify(data) : '', headers);
     }
 
     httpDelete(path: string, headers: Headers = {}): Promise<Response> {

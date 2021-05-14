@@ -51,8 +51,8 @@ class HttpClient {
     httpPost(path, data, headers = {}) {
         return this.request(path, 'POST', JSON.stringify(data), headers);
     }
-    httpPut(path, data, headers = {}) {
-        return this.request(path, 'PUT', JSON.stringify(data), headers);
+    httpPut(path, data = null, headers = {}) {
+        return this.request(path, 'PUT', (data) ? JSON.stringify(data) : '', headers);
     }
     httpDelete(path, headers = {}) {
         return this.request(path, 'DELETE', '', headers);

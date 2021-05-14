@@ -20,5 +20,11 @@ class ContactList extends HttpClient_1.default {
     delete(id) {
         return this.httpDelete(`/contact-lists/${id}`);
     }
+    addContact(id, contactId) {
+        return this.httpPut(`/contact-lists/${id}/add-contact/${contactId}`);
+    }
+    removeContact(id, contactId) {
+        return this.httpPut(`/contact-lists/${id}/remove-contact/${contactId}`);
+    }
 }
 exports.default = ContactList;

@@ -31,4 +31,12 @@ export default class ContactList extends HttpClient {
     delete(id: string): Promise<Response> {
         return this.httpDelete(`/contact-lists/${id}`);
     }
+
+    addContact(id: string, contactId: string): Promise<Response> {
+        return this.httpPut(`/contact-lists/${id}/add-contact/${contactId}`);
+    }
+
+    removeContact(id: string, contactId: string): Promise<Response> {
+        return this.httpPut(`/contact-lists/${id}/remove-contact/${contactId}`);
+    }
 }
