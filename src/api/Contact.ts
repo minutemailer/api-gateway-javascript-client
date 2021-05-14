@@ -24,6 +24,10 @@ export default class Contact extends HttpClient {
         return this.httpPost('/contacts', data);
     }
 
+    update(id: string, data: Data): Promise<Response> {
+        return this.httpPut(`/contacts/${id}`, data);
+    }
+
     delete(id: string): Promise<Response> {
         return this.httpDelete(`/contacts/${id}`);
     }

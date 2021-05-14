@@ -27,6 +27,10 @@ export default class Field extends HttpClient {
         return this.httpPost('/fields', data);
     }
 
+    update(id: string, data: Data): Promise<Response> {
+        return this.httpPut(`/fields/${id}`, data);
+    }
+
     delete(id: string): Promise<Response> {
         return this.httpDelete(`/fields/${id}`);
     }

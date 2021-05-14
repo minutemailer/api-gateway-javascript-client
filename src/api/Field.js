@@ -14,6 +14,9 @@ class Field extends HttpClient_1.default {
     create(data) {
         return this.httpPost('/fields', data);
     }
+    update(id, data) {
+        return this.httpPut(`/fields/${id}`, data);
+    }
     delete(id) {
         return this.httpDelete(`/fields/${id}`);
     }

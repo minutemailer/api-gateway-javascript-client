@@ -14,6 +14,7 @@ export default class Field extends HttpClient {
     index(): Promise<Collection>;
     show(id: string): Promise<FieldInterface>;
     create(data: Data): Promise<Response>;
+    update(id: string, data: Data): Promise<Response>;
     delete(id: string): Promise<Response>;
 }
 export {};

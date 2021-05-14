@@ -14,6 +14,9 @@ class ContactList extends HttpClient_1.default {
     create(data) {
         return this.httpPost('/contact-lists', data);
     }
+    update(id, data) {
+        return this.httpPut(`/contact-lists/${id}`, data);
+    }
     delete(id) {
         return this.httpDelete(`/contact-lists/${id}`);
     }
