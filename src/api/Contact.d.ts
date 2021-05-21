@@ -14,6 +14,6 @@ export default class Contact extends HttpClient {
     create(data: Data): Promise<Response>;
     update(id: string, data: Data): Promise<Response>;
     delete(id: string): Promise<Response>;
-    batchDelete(ids: string[]): Promise<Response>;
+    batch(action: string, ids: string[]): Promise<Response>;
 }
 export {};
