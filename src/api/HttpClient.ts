@@ -73,6 +73,6 @@ export default class HttpClient {
     }
 
     httpDelete(path: string, data: Object|null = null, headers: Headers = {}): Promise<Response> {
-        return this.request(path, 'DELETE', '', headers);
+        return this.request(path, 'DELETE', (data) ? JSON.stringify(data) : '', headers);
     }
 }
