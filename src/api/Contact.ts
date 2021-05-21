@@ -31,4 +31,8 @@ export default class Contact extends HttpClient {
     delete(id: string): Promise<Response> {
         return this.httpDelete(`/contacts/${id}`);
     }
+
+    batchDelete(ids: string[]): Promise<Response> {
+        return this.httpDelete(`/contacts/batch`, { contacts: ids });
+    }
 }

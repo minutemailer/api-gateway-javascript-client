@@ -10,6 +10,6 @@ export default class HttpClient {
     httpGet(path: string, params?: Object, headers?: Headers): Promise<Response>;
     httpPost(path: string, data: Object, headers?: Headers): Promise<Response>;
     httpPut(path: string, data?: Object | null, headers?: Headers): Promise<Response>;
-    httpDelete(path: string, headers?: Headers): Promise<Response>;
+    httpDelete(path: string, data?: Object | null, headers?: Headers): Promise<Response>;
 }
 export {};
