@@ -39,4 +39,20 @@ export default class ContactList extends HttpClient {
     removeContact(id: string, contactId: string): Promise<Response> {
         return this.httpPut(`/contact-lists/${id}/remove-contact/${contactId}`);
     }
+
+    batch(action: string, ids: string[], id: string): Promise<Response> {
+        if (action === 'delete') {
+            return this.httpDelete(`/contact-lists/batch`, { contact_lists: ids });
+        }
+
+        if (action === 'add-contacts') {
+            return this.httpPut(`/contact-lists/${id}/batch-add-contacts`, { contacts: ids });
+        }
+
+        if (action === 'remove-contacts') {
+            return this.httpPut(`/contact-lists/${id}/batch-remove-contacts`, { contacts: ids });
+        }
+
+        throw new Error('Batch action does not exist');
+    }
 }
