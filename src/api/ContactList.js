@@ -38,5 +38,8 @@ class ContactList extends HttpClient_1.default {
         }
         throw new Error('Batch action does not exist');
     }
+    duplicate(id, name) {
+        return this.httpPost(`/contact-lists/${id}/duplicate`, { name });
+    }
 }
 exports.default = ContactList;

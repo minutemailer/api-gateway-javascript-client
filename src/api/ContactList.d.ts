@@ -17,5 +17,6 @@ export default class ContactList extends HttpClient {
     addContact(id: string, contactId: string): Promise<Response>;
     removeContact(id: string, contactId: string): Promise<Response>;
     batch(action: string, ids: string[], id: string): Promise<Response>;
+    duplicate(id: string, name: string): Promise<Response>;
 }
 export {};
