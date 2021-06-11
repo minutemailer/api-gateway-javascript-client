@@ -20,9 +20,16 @@ class Contact extends HttpClient_1.default {
     delete(id) {
         return this.httpDelete(`/contacts/${id}`);
     }
-    batch(action, ids) {
+    batch(action, ids, data = {}) {
         if (action === 'delete') {
             return this.httpDelete(`/contacts/batch`, { contacts: ids });
+        }
+        if (action === 'move') {
+            return this.httpPut(`/contacts/batch-move`, {
+                contacts: ids,
+                origin: data.origin,
+                destination: data.destination,
+            });
         }
         throw new Error('Batch action does not exist');
     }

@@ -7,6 +7,11 @@ interface Data {
     [key: string]: string|number|boolean,
 }
 
+interface BatchData {
+    origin?: string,
+    destination?: string,
+}
+
 interface Collection extends CollectionInterface {
     items: ContactInterface[];
 }
@@ -32,9 +37,20 @@ export default class Contact extends HttpClient {
         return this.httpDelete(`/contacts/${id}`);
     }
 
-    batch(action: string, ids: string[]): Promise<Response> {
+    batch(action: string, ids: string[], data: BatchData = {}): Promise<Response> {
         if (action === 'delete') {
             return this.httpDelete(`/contacts/batch`, { contacts: ids });
+        }
+
+        if (action === 'move') {
+            return this.httpPut(
+                `/contacts/batch-move`,
+                {
+                    contacts: ids,
+                    origin: data.origin,
+                    destination: data.destination,
+                },
+            );
         }
 
         throw new Error('Batch action does not exist');

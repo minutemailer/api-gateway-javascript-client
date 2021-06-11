@@ -5,6 +5,10 @@ interface Data {
     email: string;
     [key: string]: string | number | boolean;
 }
+interface BatchData {
+    origin?: string;
+    destination?: string;
+}
 interface Collection extends CollectionInterface {
     items: ContactInterface[];
 }
@@ -14,6 +18,6 @@ export default class Contact extends HttpClient {
     create(data: Data): Promise<Response>;
     update(id: string, data: Data): Promise<Response>;
     delete(id: string): Promise<Response>;
-    batch(action: string, ids: string[]): Promise<Response>;
+    batch(action: string, ids: string[], data?: BatchData): Promise<Response>;
 }
 export {};
