@@ -41,5 +41,8 @@ class ContactList extends HttpClient_1.default {
     duplicate(id, name) {
         return this.httpPost(`/contact-lists/${id}/duplicate`, { name });
     }
+    merge(contact_lists, name) {
+        return this.httpPost(`/contact-lists/merge`, { contact_lists, name });
+    }
 }
 exports.default = ContactList;

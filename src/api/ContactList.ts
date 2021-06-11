@@ -59,4 +59,8 @@ export default class ContactList extends HttpClient {
     duplicate(id: string, name: string): Promise<Response> {
         return this.httpPost(`/contact-lists/${id}/duplicate`, { name });
     }
+
+    merge(contact_lists: string[], name: string): Promise<Response> {
+        return this.httpPost(`/contact-lists/merge`, { contact_lists, name });
+    }
 }
