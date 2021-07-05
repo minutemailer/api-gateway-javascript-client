@@ -33,5 +33,8 @@ class Contact extends HttpClient_1.default {
         }
         throw new Error('Batch action does not exist');
     }
+    unsubscribe(id) {
+        return this.httpPut(`/contacts/${id}/unsubscribe`);
+    }
 }
 exports.default = Contact;

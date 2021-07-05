@@ -55,4 +55,8 @@ export default class Contact extends HttpClient {
 
         throw new Error('Batch action does not exist');
     }
+
+    unsubscribe(id: string): Promise<Response> {
+        return this.httpPut(`/contacts/${id}/unsubscribe`);
+    }
 }
