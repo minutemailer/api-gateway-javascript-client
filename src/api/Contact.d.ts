@@ -19,6 +19,7 @@ interface IndexQuery {
     status?: ContactStatus;
     since?: string;
     responseMode?: 'default' | 'compact' | 'count';
+    segment?: string;
 }
 interface Collection extends CollectionInterface {
     items: ContactInterface[];
