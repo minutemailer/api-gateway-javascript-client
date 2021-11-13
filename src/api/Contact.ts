@@ -1,6 +1,8 @@
 import HttpClient from './HttpClient';
 import ContactInterface from '../interfaces/ContactInterface';
 import CollectionInterface from "../interfaces/CollectionInterface";
+import ContactStatus from "../enums/ContactStatus";
+import CountInterface from "../interfaces/CountInterface";
 
 interface Data {
     email: string,
@@ -12,13 +14,27 @@ interface BatchData {
     destination?: string,
 }
 
+interface IndexQuery {
+    query?: string,
+    inLists?: string,
+    page?: number,
+    limit?: number,
+    status?: ContactStatus,
+    since?: string,
+    responseMode?: 'default'|'compact'|'count',
+}
+
 interface Collection extends CollectionInterface {
     items: ContactInterface[];
 }
 
 export default class Contact extends HttpClient {
-    index(): Promise<Collection> {
-        return this.httpGet('/contacts').then((json: any) => json as Collection);
+    index(query: IndexQuery = {}): Promise<Collection> {
+        return this.httpGet('/contacts', query).then((json: any) => json as Collection);
+    }
+
+    count(query: IndexQuery = {}): Promise<CountInterface> {
+        return this.httpGet('/contacts', { ...query, response_mode: 'count' }).then((json: any) => json as CountInterface);
     }
 
     show(id: string): Promise<ContactInterface> {

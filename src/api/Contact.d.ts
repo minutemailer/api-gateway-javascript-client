@@ -1,6 +1,8 @@
 import HttpClient from './HttpClient';
 import ContactInterface from '../interfaces/ContactInterface';
 import CollectionInterface from "../interfaces/CollectionInterface";
+import ContactStatus from "../enums/ContactStatus";
+import CountInterface from "../interfaces/CountInterface";
 interface Data {
     email: string;
     [key: string]: string | number | boolean;
@@ -9,11 +11,21 @@ interface BatchData {
     origin?: string;
     destination?: string;
 }
+interface IndexQuery {
+    query?: string;
+    inLists?: string;
+    page?: number;
+    limit?: number;
+    status?: ContactStatus;
+    since?: string;
+    responseMode?: 'default' | 'compact' | 'count';
+}
 interface Collection extends CollectionInterface {
     items: ContactInterface[];
 }
 export default class Contact extends HttpClient {
-    index(): Promise<Collection>;
+    index(query?: IndexQuery): Promise<Collection>;
+    count(query?: IndexQuery): Promise<CountInterface>;
     show(id: string): Promise<ContactInterface>;
     create(data: Data): Promise<Response>;
     update(id: string, data: Data): Promise<Response>;

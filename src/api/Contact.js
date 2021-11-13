@@ -5,8 +5,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const HttpClient_1 = __importDefault(require("./HttpClient"));
 class Contact extends HttpClient_1.default {
-    index() {
-        return this.httpGet('/contacts').then((json) => json);
+    index(query = {}) {
+        return this.httpGet('/contacts', query).then((json) => json);
+    }
+    count(query = {}) {
+        return this.httpGet('/contacts', { ...query, response_mode: 'count' }).then((json) => json);
     }
     show(id) {
         return this.httpGet(`/contacts/${id}`).then((json) => json);
