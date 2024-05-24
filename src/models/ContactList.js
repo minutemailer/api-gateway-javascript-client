@@ -1,13 +1,21 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 class ContactList {
-    constructor(id, name, autoRemove = 0, description, unsubscribeText, viewInBrowser) {
+    id;
+    name;
+    hidden;
+    metadata;
+    subscribe_url;
+    created_at;
+    updated_at;
+    constructor(id, name, hidden, metadata, subscribe_url, created_at, updated_at) {
         this.id = id;
         this.name = name;
-        this.description = description;
-        this.unsubscribeText = unsubscribeText;
-        this.viewInBrowser = viewInBrowser;
-        this.autoRemove = autoRemove;
+        this.hidden = hidden;
+        this.metadata = metadata;
+        this.subscribe_url = subscribe_url;
+        this.created_at = created_at;
+        this.updated_at = updated_at;
     }
 }
 exports.default = ContactList;

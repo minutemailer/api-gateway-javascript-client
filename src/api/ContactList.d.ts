@@ -13,6 +13,8 @@ export default class ContactList extends HttpClient {
     show(id: string): Promise<ContactListInterface>;
     create(data: Data): Promise<Response>;
     update(id: string, data: Data): Promise<Response>;
+    hide(id: string): Promise<Response>;
+    unhide(id: string): Promise<Response>;
     delete(id: string): Promise<Response>;
     addContact(id: string, contactId: string): Promise<Response>;
     removeContact(id: string, contactId: string): Promise<Response>;

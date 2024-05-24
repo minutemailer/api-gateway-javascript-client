@@ -2,9 +2,10 @@ import ContactListInterface from '../interfaces/ContactListInterface';
 export default class ContactList implements ContactListInterface {
     id: string;
     name: string;
-    description?: string;
-    unsubscribeText?: string;
-    viewInBrowser?: string;
-    autoRemove: number;
-    constructor(id: string, name: string, autoRemove?: number, description?: string, unsubscribeText?: string, viewInBrowser?: string);
+    hidden: boolean;
+    metadata: Object;
+    subscribe_url: string;
+    created_at: string;
+    updated_at: string;
+    constructor(id: string, name: string, hidden: boolean, metadata: Object, subscribe_url: string, created_at: string, updated_at: string);
 }
