@@ -7,6 +7,8 @@ const Contact_1 = __importDefault(require("./api/Contact"));
 const ContactList_1 = __importDefault(require("./api/ContactList"));
 const Field_1 = __importDefault(require("./api/Field"));
 class Minutemailer {
+    apiKey;
+    endpoint;
     constructor(apiKey, endpoint = 'https://api-gateway.minutemailer.com') {
         this.apiKey = apiKey;
         this.endpoint = endpoint;

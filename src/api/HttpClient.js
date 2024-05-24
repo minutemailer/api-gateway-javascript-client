@@ -7,6 +7,9 @@ const objToQuery_1 = __importDefault(require("../lib/objToQuery"));
 const RequestError_1 = __importDefault(require("./RequestError"));
 ;
 class HttpClient {
+    apiKey;
+    endpoint;
+    headers;
     constructor(apiKey, endpoint) {
         this.apiKey = apiKey;
         this.endpoint = endpoint;
@@ -44,7 +47,7 @@ class HttpClient {
     httpGet(path, params, headers = {}) {
         let url = path;
         if (params) {
-            url += `?${objToQuery_1.default(params)}`;
+            url += `?${(0, objToQuery_1.default)(params)}`;
         }
         return this.request(url, 'GET', '', headers);
     }

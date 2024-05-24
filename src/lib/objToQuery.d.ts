@@ -1,2 +1,2 @@
-declare const _default: (obj: Object, exclude?: string[] | undefined) => string;
+declare const _default: (obj: Object, exclude?: string[]) => string;
 export default _default;
