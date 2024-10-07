@@ -28,7 +28,7 @@ export default class Contact extends HttpClient {
     index(query?: IndexQuery): Promise<Collection>;
     count(query?: IndexQuery): Promise<CountInterface>;
     show(id: string): Promise<ContactInterface>;
-    create(data: Data): Promise<Response>;
+    create(data: Data, sendConfirmation?: string): Promise<Response>;
     update(id: string, data: Data): Promise<Response>;
     delete(id: string): Promise<Response>;
     batch(action: string, ids: string[], data?: BatchData): Promise<Response>;

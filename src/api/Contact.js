@@ -14,8 +14,8 @@ class Contact extends HttpClient_1.default {
     show(id) {
         return this.httpGet(`/contacts/${id}`).then((json) => json);
     }
-    create(data) {
-        return this.httpPost('/contacts', data);
+    create(data, sendConfirmation = 'yes') {
+        return this.httpPost(`/contacts?send_confirmation=${sendConfirmation}`, data);
     }
     update(id, data) {
         return this.httpPut(`/contacts/${id}`, data);

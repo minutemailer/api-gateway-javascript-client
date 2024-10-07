@@ -42,8 +42,8 @@ export default class Contact extends HttpClient {
         return this.httpGet(`/contacts/${id}`).then((json: any) => json as ContactInterface);
     }
 
-    create(data: Data): Promise<Response> {
-        return this.httpPost('/contacts', data);
+    create(data: Data, sendConfirmation: string = 'yes'): Promise<Response> {
+        return this.httpPost(`/contacts?send_confirmation=${sendConfirmation}`, data);
     }
 
     update(id: string, data: Data): Promise<Response> {
