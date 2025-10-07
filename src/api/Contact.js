@@ -20,6 +20,9 @@ class Contact extends HttpClient_1.default {
     update(id, data) {
         return this.httpPut(`/contacts/${id}`, data);
     }
+    updateEmailAddress(id, new_email_address) {
+        return this.httpPut(`/contacts/${id}/update-email-address`, { new_email_address });
+    }
     delete(id) {
         return this.httpDelete(`/contacts/${id}`);
     }

@@ -20,6 +20,8 @@ interface IndexQuery {
     since?: string;
     responseMode?: 'default' | 'compact' | 'count';
     segment?: string;
+    sort_by?: string;
+    sort_direction?: 'asc' | 'desc';
 }
 interface Collection extends CollectionInterface {
     items: ContactInterface[];
@@ -30,6 +32,7 @@ export default class Contact extends HttpClient {
     show(id: string): Promise<ContactInterface>;
     create(data: Data, sendConfirmation?: string): Promise<Response>;
     update(id: string, data: Data): Promise<Response>;
+    updateEmailAddress(id: string, new_email_address: string): Promise<Response>;
     delete(id: string): Promise<Response>;
     batch(action: string, ids: string[], data?: BatchData): Promise<Response>;
     unsubscribe(id: string): Promise<Response>;

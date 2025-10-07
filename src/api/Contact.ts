@@ -23,6 +23,8 @@ interface IndexQuery {
     since?: string,
     responseMode?: 'default'|'compact'|'count',
     segment?: string,
+    sort_by?: string,
+    sort_direction?: 'asc'|'desc',
 }
 
 interface Collection extends CollectionInterface {
@@ -48,6 +50,10 @@ export default class Contact extends HttpClient {
 
     update(id: string, data: Data): Promise<Response> {
         return this.httpPut(`/contacts/${id}`, data);
+    }
+
+    updateEmailAddress(id: string, new_email_address: string): Promise<Response> {
+        return this.httpPut(`/contacts/${id}/update-email-address`, { new_email_address });
     }
 
     delete(id: string): Promise<Response> {
